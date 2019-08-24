@@ -3,28 +3,28 @@ const Product = require('../models/product')
 class ProductController {
     //buat admin
     static create(req, res, next) {
-        let { id } = req.decode
+        // let { id } = req.decode
         let { name, price, image, stock } = req.body
-        Product.create({ name, price, image, stock, userId: id})
+        Product.create({ name, price, stock, image })
         .then(product => {
             res.status(201).json({data: product, message: 'new product created'})
         })
         .catch(next)
     }
-    //buat admin
+
     static find(req, res, next) {
-        let { id } = req.decode
-        Product.find({userId: id})
+        // let { id } = req.decode
+        Product.find()
         .then(products => {
             res.status(200).json(products)
         })
         .catch(next)
     }
-    //buat customer
-    static findAll(req, res, next) {
-        Product.find()
-        .then(products => {
-            res.status(200).json(products)
+
+    static findOne(req, res, next) {
+        Product.findById(req.params.id)
+        .then(product => {
+            res.status(200).json(product)
         })
         .catch(next)
     }
@@ -44,7 +44,7 @@ class ProductController {
         .catch(next)
     }
     //buat admin
-    static delete(req, res, next) {
+    static deleteProduct(req, res, next) {
         Product.findByIdAndDelete(req.params.id)
         .then(data => {
             res.status(200).json(data)

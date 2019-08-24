@@ -50,6 +50,17 @@ class UserController {
             email: email
         })
         .then(user => {
+            // if(user.role) {
+            //     if(decrypt(password,user.password)) {
+            //         const payload = {
+            //             id: user._id,
+            //             name: user.name,
+            //             email: user.email
+            //         }
+            //         const token = generateToken(payload)
+            //         res.status(200).json({token, role:})
+            //     }
+            // }
             if(user){
                 if(decrypt(password,user.password)) {
                     const payload = {
@@ -58,8 +69,7 @@ class UserController {
                         email: user.email
                     }
                     const token = generateToken(payload)
-                    // console.log(token)
-                    res.status(200).json({token})
+                    res.status(200).json({token, role: user.role})
                 } else { 
                     next
                 }
@@ -76,7 +86,7 @@ class UserController {
             name, email, password: encrypt(password)
         })
         .then(data => {
-            res.status(201).json({data, message: 'New user created'})
+            res.status(201).json(data)
         })
         .catch(next)
     }

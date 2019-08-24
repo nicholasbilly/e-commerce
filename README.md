@@ -80,7 +80,7 @@ error :
 
 
 ### **Find Products**
-Find all user's products
+Find all products
 | Route | HTTP | Header(s) |
 |---|---|---|
 |`/products`|GET|`token`|
@@ -99,25 +99,6 @@ error:
     status: 404
     message: 'data not found'
 
-### **Find All Products**
-Find all products in the database
-| Route | HTTP | Header(s) |
-|---|---|---|
-|`/products/all`|GET|`token`|
-
-Body: 
-
-    none
-
-success :
-
-    status: 200
-    message: 'all products'
-
-error : 
-
-    status: 404
-    message: 'data not found'
 
 ### **Update product**
 Update product in the database
