@@ -10,11 +10,29 @@ export default new Vuex.Store({
         isLogin: false,
         page: 'login',
         products: [],
+        cart: [],
+        count: 0
     },
 
     mutations: {
         GETPRODUCTS(state, payload) {
             state.products = payload
+        },
+
+        CHANGEPAGE(state, payload) {
+            state.page = payload
+        },
+
+        CHANGELOGIN(state, payload) {
+            state.isLogin = payload
+        },
+
+        ADDTOCART(state, payload) {
+            state.cart.push(payload)
+        },
+
+        ADDCOUNT(state, payload) {
+            state.count += payload
         }
     },
 

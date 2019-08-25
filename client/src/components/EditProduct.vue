@@ -67,7 +67,7 @@ export default {
 
       backButton() {
           this.$router.push('/admin')
-      }
+      },
   },
 
   created() {

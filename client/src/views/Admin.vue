@@ -4,6 +4,7 @@
     text>
      <AddProduct/>
   </v-btn>
+  <router-view></router-view>
       <v-container fluid class=“my-5”>
        <v-layout row wrap>
          <v-flex xs12 sm3 v-for="(product, index) in products" :key="index">

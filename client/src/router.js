@@ -4,6 +4,8 @@ import Home from './views/Home.vue'
 import Shop from './views/Shop.vue'
 import Admin from './views/Admin.vue'
 import EditProduct from './components/EditProduct.vue'
+import oneProduct from './views/oneProduct.vue'
+import Cart from './components/Cart.vue'
 
 Vue.use(Router)
 
@@ -27,7 +29,13 @@ export default new Router({
     {
       path: '/shop',
       name: 'shop',
-      component: Shop
+      component: Shop,
+      children: [
+        {
+          path: ':id',
+          component: oneProduct
+        }
+      ]
     },
     {
       path: '/admin',
@@ -38,6 +46,11 @@ export default new Router({
       path: '/admin/:id',
       name: 'edit',
       component: EditProduct
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: Cart
     }
   ]
 })

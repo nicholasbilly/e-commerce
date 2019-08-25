@@ -15,8 +15,8 @@
       <v-btn text router-link to="/home" v-if="page == 'home'" >
         <span class="mr-2">Home</span>
       </v-btn>
-      <v-btn text router-link to="/" v-if="page == 'home'">
-        <span class="mr-2">Cart</span>
+      <v-btn text router-link to="/cart" v-if="page == 'home'">
+        <span class="mr-2"> {{count}} - Cart</span>
       </v-btn>
       <v-btn text color="primary" v-if="page !== 'login' && page !== 'register'" @click="logout">
         <span class="mr-2">SignOut</span>
@@ -51,28 +51,24 @@ export default {
     Navbar
   },
   data: () => ({
-
   }),
   computed: mapState([
     'page',
+    'count'
   ]),
   methods: {
     onLogin() {
-      this.$store.state.page = "login";
+      this.$store.commit('CHANGEPAGE', 'login')
     },
 
     logout() {
       localStorage.removeItem('token')
-      this.$store.state.page = "login";
+      this.$store.commit('CHANGEPAGE', 'login')
     },
 
     onRegister() {
-      this.$store.state.page = "register";
+      this.$store.commit('CHANGEPAGE', 'register')
     },
-
-    // changePage(event) {
-    //   this.page = event;
-    // },
 
     
   },

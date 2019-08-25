@@ -10,6 +10,7 @@
     ></v-img>
 
     <v-card-title>{{barang.name}}</v-card-title>
+    <router-link :to="`/shop/${barang._id}`" v-if="page === 'home'"><oneProduct/></router-link>
     <v-card-text>
 
       <div class="my-4 subtitle-1 yellow--text">
@@ -25,7 +26,7 @@
       <v-btn
         color="white"
         text
-        @click="reserve"
+        @click="addcart(barang)"
       >
         Add to Cart
       </v-btn>
@@ -57,6 +58,7 @@ const url = "http://localhost:3000";
 import axios from "axios";
 import { mapState } from "vuex";
 import Swal from 'sweetalert2'
+import oneProduct from '../views/oneProduct'
   export default {
     data: () => ({
       loading: false,
@@ -64,18 +66,20 @@ import Swal from 'sweetalert2'
     }),
     props: ['barang'],
     components: {
-      
+      oneProduct
     },
 
     computed: mapState([
-      'page'
+      'page',
+      'cart',
+      'count'
     ]),
 
     methods: {
-      reserve () {
-        this.loading = true
-        setTimeout(() => (this.loading = false), 500)
-      },
+      // reserve () {
+      //   this.loading = true
+      //   setTimeout(() => (this.loading = false), 500)
+      // },
 
       deleteProduct(id) {
       Swal.fire({
@@ -102,6 +106,11 @@ import Swal from 'sweetalert2'
 
       editProduct(id) {
         this.$router.push(`/admin/${id}`)
+      },
+
+      addcart(payload) {
+        this.$store.commit('ADDTOCART', payload)
+        this.$store.commit('ADDCOUNT', 1)
       }
     },
     updated() {
