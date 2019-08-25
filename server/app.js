@@ -14,7 +14,7 @@ app.use(cors())
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 
-mongoose.connect(`mongodb+srv://ecommerce:Thunder123@clustertype40-z9sli.mongodb.net/ecommerce-${process.env.NODE_ENV}?retryWrites=true&w=majority`, { useNewUrlParser: true })
+mongoose.connect(`mongodb+srv://ecommerce:Thunder123@clustertype40-z9sli.mongodb.net/ecommerce-development?retryWrites=true&w=majority`, { useNewUrlParser: true })
 .then(success => {
     console.log('mongoose connected')
 })
