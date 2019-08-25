@@ -2,8 +2,8 @@
   <v-app>
     <v-app-bar app>
       <v-toolbar-title class="headline text-uppercase">
-        <span>GAME</span>
-        <span class="font-weight-light">E-commerce</span>
+        <span>GG GAME   </span>
+        <span class="font-weight-light">  Online Store</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn text v-if="page === 'login'">
