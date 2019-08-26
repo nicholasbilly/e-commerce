@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 3000
 const userRouter = require('./routes/userRouter')
 const productRouter = require('./routes/productRouter')
 const imageRouter = require('./routes/imageRouter')
+const cartRouter = require('./routes/cartRouter')
 
 app.use(cors())
 app.use(express.urlencoded({extended: false}))
@@ -25,6 +26,7 @@ mongoose.connect(`mongodb+srv://ecommerce:Thunder123@clustertype40-z9sli.mongodb
 app.use('/images', imageRouter)
 app.use('/users', userRouter)
 app.use('/products', productRouter)
+app.use('/carts', cartRouter)
 
 app.use((err, req, res, next) => {
     // console.log(err)
