@@ -24,7 +24,7 @@ import axios from "axios";
 import { mapState } from "vuex";
 import AddProduct from '../components/AddProduct'
 import Card from '../components/Card.vue'
-const url = "http://localhost:3000";
+const url = "http://34.67.162.136";
 export default {
   name: "admin",
   components: {

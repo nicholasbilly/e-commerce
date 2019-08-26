@@ -13,12 +13,12 @@
           <v-list-item-title> {{item.name}} </v-list-item-title>
         </v-list-item-content>
         <v-list-item-content>
-          <v-list-item-title> {{ item.price }}</v-list-item-title>
+          <v-list-item-title> Rp {{ item.price }}</v-list-item-title>
         </v-list-item-content>
 
       </v-list-item>
     </v-list>
-      <h1 style="text-align:center;"> Total : {{ total() }}</h1>
+      <h1 style="text-align:center;"> Total : Rp  {{ total() }}</h1>
       <v-btn color="white" text @click="back">Close</v-btn>
   </v-container>
 
@@ -28,7 +28,7 @@
 <script>
 import axios from 'axios'
 import { mapState } from 'vuex';
-const url = "http://localhost:3000";
+const url = "http://34.67.162.136";
 
 export default {
    data () {

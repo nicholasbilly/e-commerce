@@ -38,7 +38,7 @@
 
 <script>
 import axios from 'axios'
-const url = "http://localhost:3000";
+const url = "http://34.67.162.136";
 
 export default {
   name: "add",

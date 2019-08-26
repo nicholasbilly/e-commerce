@@ -42,7 +42,7 @@ import Navbar from "./components/Navbar";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { mapState } from 'vuex';
-const url = "http://localhost:3000";
+const url = "http://34.67.162.136";
 export default {
   name: "App",
   components: {

@@ -54,7 +54,7 @@
 </template>
 
 <script>
-const url = "http://localhost:3000";
+const url = "http://34.67.162.136";
 import axios from "axios";
 import { mapState } from "vuex";
 import Swal from 'sweetalert2'
