@@ -28,12 +28,19 @@ export default new Vuex.Store({
         },
 
         ADDTOCART(state, payload) {
-            state.cart.push(payload)
+            for(let i = 0; i < payload.length; i++) {
+                state.cart.push(payload[i])
+            }
+        },
+
+        EMPTYCART(state) {
+            state.cart = []
         },
 
         ADDCOUNT(state, payload) {
             state.count += payload
-        }
+        },
+
     },
 
     actions: {
@@ -44,8 +51,25 @@ export default new Vuex.Store({
                  context.commit('GETPRODUCTS', data)
             })
             .catch(console.log)
+        },
+
+        getCart(context) {
+            let token = localStorage.getItem('token')
+            axios.get(`http://34.67.162.136/carts`, {headers: {token}})
+            .then(({data}) => {
+                // console.log(data.products[0].name)
+                context.commit('ADDTOCART', data.products)
+            })
+        },
+
+        removeProduct(context, payload) {
+            let token = localStorage.getItem('token')
+            // console.log(payload)
+            axios.patch(`http://34.67.162.136/carts/${payload}/remove`, {}, {headers: {token}})
+            .then(({data}) => {
+                context.dispatch('getCart')
+            })
+
         }
     }
-
-
 })

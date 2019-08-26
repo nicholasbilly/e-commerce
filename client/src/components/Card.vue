@@ -26,7 +26,7 @@
       <v-btn
         color="white"
         text
-        @click="addcart(barang)"
+        @click="addcart(barang._id)"
       >
         Add to Cart
       </v-btn>
@@ -97,6 +97,7 @@ import oneProduct from '../views/oneProduct'
             axios.delete(`${url}/products/${id}`, {headers: {token}})
             .then(deleted => {
               Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              this.$store.dispatch('getProducts')
              })
             .catch(console.log)     
           }
@@ -109,13 +110,15 @@ import oneProduct from '../views/oneProduct'
       },
 
       addcart(payload) {
-        this.$store.commit('ADDTOCART', payload)
+        // this.$store.commit('ADDTOCART', payload)
         this.$store.commit('ADDCOUNT', 1)
+        let token = localStorage.getItem('token')
+        axios.patch(`http://34.67.162.136/carts/${payload}`, {}, {headers: {token}})
       }
     },
-    updated() {
-    this.$store.dispatch('getProducts')
-  }
+  //   updated() {
+  //   this.$store.dispatch('getProducts')
+  // }
   }
 </script>
 

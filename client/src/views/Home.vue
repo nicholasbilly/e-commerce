@@ -37,6 +37,9 @@
 </template>
 
 <script>
+import axios from 'axios'
+const url = "http://34.67.162.136"
+
   export default {
     name: 'Home',
     components: {
@@ -46,5 +49,18 @@
       return {
       }
     },
+
+    created() {
+      let token = localStorage.getItem('token')
+      axios.get(`http://34.67.162.136/carts/one`, {headers: {token}})
+      .then(({data}) => {
+        if(!data) {
+          axios.post(`http://34.67.162.136/carts`, {}, {headers: {token}})
+          .then(() => {
+            console.log('cart created')
+          })
+        }
+      })
+    }
   }
 </script>

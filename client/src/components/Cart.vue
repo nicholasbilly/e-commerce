@@ -15,10 +15,12 @@
         <v-list-item-content>
           <v-list-item-title> Rp {{ item.price }}</v-list-item-title>
         </v-list-item-content>
+        <v-btn color="red" @click="remove(item._id)"> Remove </v-btn>
 
       </v-list-item>
     </v-list>
-      <h1 style="text-align:center;"> Total : Rp  {{ total() }}</h1>
+      <h2 style="text-align:right;"> Quantity : {{quantity()}} items </h2>
+      <h2 style="text-align:right;"> Total : Rp  {{ total() }}</h2>
       <v-btn color="white" text @click="back">Close</v-btn>
   </v-container>
 
@@ -51,8 +53,22 @@ export default {
                sum += myCart[i].price
            }
            return sum
+       },
+
+       quantity() {
+          let myCart = this.$store.state.cart
+          return myCart.length
+       },
+
+       remove(id) {
+         this.$store.dispatch('removeProduct', id)
        }
    },
+   
+   created() {
+     this.$store.commit('EMPTYCART')
+     this.$store.dispatch('getCart')
+   }
 }
 </script>
 

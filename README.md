@@ -144,3 +144,133 @@ error:
 
     status: 404
     message: 'data not found'
+
+
+## `/images` end point
+### **Upload image**
+Upload image to Google Cloud Storage
+| Route | HTTP | Header(s) |
+|---|---|---|
+|`/images`|POST|`none`|
+
+Body:
+
+    image: file
+
+success: 
+
+    status: 200
+    message: 'upload success'
+    data: link
+
+error: 
+
+    status: 404
+    message: 'data not found'
+
+
+## `/carts` end point
+### **Create Cart**
+Create new Cart
+
+| Route | HTTP | Header(s) |
+|---|---|---|
+|`/carts`|POST|`token`|
+
+Body: 
+
+    none
+
+success: 
+
+    status: 201
+    data: {userId, products}
+
+error: 
+
+    status: 404
+    message: 'data not found'
+
+### **ADD product to cart**
+Add new product to cart with id on params
+
+| Route | HTTP | Header(s) |
+|---|---|---|
+|`/carts/:id`|PATCH|`token`|
+
+Body: 
+
+    none
+
+success: 
+
+    status: 200
+    data: {userId, products}
+
+error: 
+
+    status: 404
+    message: 'data not found'
+
+### **Delete product from cart**
+Delete products with id from params
+
+| Route | HTTP | Header(s) |
+|---|---|---|
+|`/carts/:id/remove`|PATCH|`token`|
+
+Body: 
+
+    none
+
+success: 
+
+    status: 200
+    data: {userId, products}
+
+error: 
+
+    status: 404
+    message: 'data not found'
+
+### **Get Cart**
+Get user cart data
+
+| Route | HTTP | Header(s) |
+|---|---|---|
+|`/carts`|GET|`token`|
+
+Body :
+
+    none
+
+success: 
+
+    status: 200
+    data: {userId, products: [productId]}
+
+error: 
+
+    status: 404
+    message: 'data not found'
+
+### **Get one Cart**
+Get one user cart data
+
+| Route | HTTP | Header(s) |
+|---|---|---|
+|`/carts/one`|GET|`token`|
+
+Body :
+
+    none
+
+success: 
+
+    status: 200
+    data: {userId, products}
+
+error: 
+
+    status: 404
+    message: 'data not found'

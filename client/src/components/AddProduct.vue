@@ -39,6 +39,7 @@
 <script>
 import axios from 'axios'
 const url = "http://34.67.162.136";
+import Swal from 'sweetalert2'
 
 export default {
   name: "add",
@@ -57,10 +58,14 @@ export default {
       let { image } = this;
       var bodyFormData = new FormData();
       bodyFormData.append("image", image[0]);
+      Swal.fire({
+                title: 'Uploading new Product',
+                allowOutsideClick: () => !Swal.isLoading()
+            })
+            Swal.showLoading()
       axios
         .post(`${url}/images`, bodyFormData, { headers: { token } })
         .then(({ data }) => {
-          console.log(data)
           axios.post(
             `${url}/products`,
             {
@@ -73,7 +78,15 @@ export default {
           );
         })
         .then(result => {
-          this.$store.state.products.unshift(result);
+          Swal.close()
+          Swal.fire({
+            position: "center",
+            type: "success",
+            title: "Product Created",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          this.$store.dispatch('getProducts')
           this.dialog = false
         })
         .catch(console.log);
@@ -83,8 +96,8 @@ export default {
         this.image = this.$refs.myFiles.files
     },
 
+  },
 
-  }
 };
 </script>
 

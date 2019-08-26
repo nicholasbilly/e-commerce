@@ -18,6 +18,6 @@ router.post('/',
     })
   })
 
-router.delete('/', deleteFile)
+router.delete('/:id', deleteFile)
 
 module.exports = router

@@ -42,7 +42,11 @@ export default {
   methods: {
 
 
-  }
+  },
+
+  // updated() {
+  //   this.$store.dispatch('getProducts')
+  // }
 };
 </script>
 

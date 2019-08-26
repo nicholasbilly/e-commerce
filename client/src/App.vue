@@ -64,6 +64,7 @@ export default {
     logout() {
       localStorage.removeItem('token')
       this.$store.commit('CHANGEPAGE', 'login')
+      this.$router.go(-1)
     },
 
     onRegister() {
@@ -77,8 +78,8 @@ export default {
     this.$store.dispatch('getProducts')
   },
 
-  updated() {
-    this.$store.dispatch('getProducts')
-  }
+  // updated() {
+  //   this.$store.dispatch('getProducts')
+  // }
 };
 </script>

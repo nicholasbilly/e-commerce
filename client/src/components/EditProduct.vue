@@ -48,12 +48,18 @@ export default {
       updateProduct() {
           let productId = this.$route.params.id
           let token = localStorage.getItem('token')
+          Swal.fire({
+                title: 'Updating your article...',
+                allowOutsideClick: () => !Swal.isLoading()
+            })
+            Swal.showLoading()
           axios.patch(`${url}/products/${productId}`, {
               name: this.name,
               price: this.price,
               stock: this.stock
           }, { headers: {token}})
           .then(({data}) => {
+            Swal.close()
               Swal.fire({
               position: "center",
               type: "success",
@@ -61,7 +67,8 @@ export default {
               showConfirmButton: false,
               timer: 1500
              })
-              this.$router.push('/admin')
+             this.$store.dispatch('getProducts')
+             this.$router.push('/admin')
           })
       },
 
